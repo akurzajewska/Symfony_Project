@@ -1,0 +1,42 @@
+version: '3'
+
+services: 
+    nginx:
+        build:
+            context: .
+            dockerfile: Dockerfile-nginx
+        volumes:
+            - ./symfony/:/var/www/symfony/
+        ports:
+            - 8001:80
+        networks:
+            - symfony
+
+    php:
+        build: 
+            context: .
+            dockerfile: Dockerfile-php
+        environment: 
+            APP_ENV: dev
+            DATABASE_URL: mysql://symfony_user:symfony_password@postgres:3306/symfony_db?serverVersion=5.7
+        volumes:
+            - ./symfony/:/var/www/symfony/
+        networks:
+            - symfony
+    
+    db:
+        image: postgres
+        restart: always
+        environment: 
+            POSTGRES_DB: root
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: root
+        ports:
+            - 3306:3306
+        volumes:
+            - ./postgres:/var/lib/postgres
+        networks: 
+            - symfony
+        
+networks: 
+    symfony:
