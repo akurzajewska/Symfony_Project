@@ -2,6 +2,7 @@ FROM php:fpm-stretch
 
 RUN apt-get update && apt-get install -y
 RUN apt-get update && apt-get install -y --no-install-recommends \
+        unzip \
         git \
         zlib1g-dev \
         libxml2-dev \
