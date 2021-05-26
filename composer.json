@@ -1,8 +1,10 @@
 {
     "require": {
-        "symfony/orm-pack": "^2.1"
+        "symfony/orm-pack": "^2.1",
+        "symfony/symfony": "4.0.*"
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.31"
+        "symfony/maker-bundle": "^1.31",
+        "symfony/symfony": "4.0.*"
     }
 }

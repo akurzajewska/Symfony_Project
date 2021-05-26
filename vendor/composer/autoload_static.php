@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitd450f6ad4ea52de4407358e82edad690
+class ComposerStaticInit17324ecde0c6635c74092f57f407299d
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -14,8 +14,8 @@ class ComposerStaticInitd450f6ad4ea52de4407358e82edad690
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '7e9bd612cc444b3eed788ebbe46263a0' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/autoload.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
-        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
+        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
     );
 
@@ -295,9 +295,9 @@ class ComposerStaticInitd450f6ad4ea52de4407358e82edad690
         ),
         'Doctrine\\Common\\' => 
         array (
-            0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
-            1 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
-            2 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Common',
+            0 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
+            1 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Common',
+            2 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
         ),
         'Doctrine\\Bundle\\MigrationsBundle\\' => 
         array (
@@ -321,9 +321,9 @@ class ComposerStaticInitd450f6ad4ea52de4407358e82edad690
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd450f6ad4ea52de4407358e82edad690::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd450f6ad4ea52de4407358e82edad690::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitd450f6ad4ea52de4407358e82edad690::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit17324ecde0c6635c74092f57f407299d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit17324ecde0c6635c74092f57f407299d::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit17324ecde0c6635c74092f57f407299d::$classMap;
 
         }, null, ClassLoader::class);
     }
