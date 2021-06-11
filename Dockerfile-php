@@ -24,4 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 && curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer \
 &&curl -sL https://deb.nodesource.com/setup_11.x  | bash -
 
+RUN composer install
+
 COPY symfony/ /var/www/symfony
+
