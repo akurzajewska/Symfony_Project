@@ -2,41 +2,80 @@ version: '3'
 
 services: 
     nginx:
+        container_name: symfony_nginx
         build:
             context: .
             dockerfile: Dockerfile-nginx
         volumes:
             - ./symfony/:/var/www/symfony/
         ports:
-            - 8001:80
+            - "80:80"
         networks:
             - symfony
 
     php:
+        container_name: symfony_php
         build: 
             context: .
             dockerfile: Dockerfile-php
-        environment: 
+#        env_file:
+#            - conf.env
+#        links:
+#            - db
+        environment:
             APP_ENV: dev
-            DATABASE_URL: mysql://symfony_user:symfony_password@postgres:3306/symfony_db?serverVersion=5.7
+            DATABASE_URL: postgres://symfony_user:symfony_password@postgres:81
         volumes:
             - ./symfony/:/var/www/symfony/
         networks:
             - symfony
-    
+
     db:
+        container_name: symfony_postgres
         image: postgres
         restart: always
-        environment: 
+        environment:
             POSTGRES_DB: root
             POSTGRES_USER: root
             POSTGRES_PASSWORD: root
-        ports:
-            - 3306:3306
         volumes:
             - ./postgres:/var/lib/postgres
-        networks: 
+        networks:
             - symfony
-        
+
+    phppgadmin:
+        container_name: symfony_pgadmin
+        image: dockage/phppgadmin:latest
+        restart: always
+        ports:
+            - "81:80"
+        links:
+            - db
+        environment:
+            - PHP_PG_ADMIN_SERVER_DESC=PostgreSQL
+            - PHP_PG_ADMIN_SERVER_HOST=
+            - PHP_PG_ADMIN_SERVER_PORT=5432
+            - PHP_PG_ADMIN_SERVER_SSL_MODE=allow
+            - PHP_PG_ADMIN_SERVER_DEFAULT_DB=template1
+            - PHP_PG_ADMIN_SERVER_PG_DUMP_PATH=/usr/bin/pg_dump
+            - PHP_PG_ADMIN_SERVER_PG_DUMPALL_PATH=/usr/bin/pg_dumpall
+            - PHP_PG_ADMIN_DEFAULT_LANG=auto
+            - PHP_PG_ADMIN_AUTO_COMPLETE=default on
+            - PHP_PG_ADMIN_EXTRA_LOGIN_SECURITY=false
+            - PHP_PG_ADMIN_OWNED_ONLY=false
+            - PHP_PG_ADMIN_SHOW_COMMENTS=true
+            - PHP_PG_ADMIN_SHOW_ADVANCED=false
+            - PHP_PG_ADMIN_SHOW_SYSTEM=false
+            - PHP_PG_ADMIN_MIN_PASSWORD_LENGTH=1
+            - PHP_PG_ADMIN_LEFT_WIDTH=200
+            - PHP_PG_ADMIN_THEME=default
+            - PHP_PG_ADMIN_SHOW_OIDS=false
+            - PHP_PG_ADMIN_MAX_ROWS=30
+            - PHP_PG_ADMIN_MAX_CHARS=50
+            - PHP_PG_ADMIN_USE_XHTML_STRICT=false
+            - PHP_PG_ADMIN_HELP_BASE=http://www.postgresql.org/docs/%s/interactive/
+            - PHP_PG_ADMIN_AJAX_REFRESH=3
+        networks:
+            - symfony
 networks: 
     symfony:

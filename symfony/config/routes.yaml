@@ -1,3 +1,6 @@
 index:
     path: /first
     controller: App\Controller\FirstController::homepage
+welcome:
+    path: /second
+    controller: App\Controller\WelcomeController::welcome
