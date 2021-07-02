@@ -22,9 +22,6 @@ services:
 #            - conf.env
 #        links:
 #            - db
-        environment:
-            APP_ENV: dev
-            DATABASE_URL: postgres://symfony_user:symfony_password@postgres:81
         volumes:
             - ./symfony/:/var/www/symfony/
         networks:
